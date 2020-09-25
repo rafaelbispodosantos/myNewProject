@@ -40,17 +40,23 @@ export default function App() {
 
     <KeyboardAvoidingView style={styles.background}>
 
-      <View style={styles.containerLogo}>
+      <View>
+        <View  style={{ flex: 0.3,
+    backgroundColor: "#e4f1ff",
+    
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,}}>
+        <Text style={styles.submitText}>Faça login no novo reconhencimento Facial</Text>
+        </View>
 
-        <Text style={styles.submitText}>O novo Sistema de cadastramento e login
-        por reconhecimento facial esta ativo
-        teste ele agora</Text>
-        <View style={{ flexDirection: 'column-reverse' }}>
+        
+        <View style={{ flexDirection: 'column-reverse', alignItems: 'center',justifyContent:"flex-end", flex: 0.35,
+    backgroundColor: "#e4f1ff" }}>
 
 
    
 
-          <Camera style={{ flexDirection: 'row', width: '60%', height: '60%',justifyContent:'center' }} type={type} ref={ref => {
+          <Camera style={{ flexDirection: 'row', width: '60%', height: '60%',justifyContent:'center'}} type={type} ref={ref => {
             setCameraRef(ref);
           }}>
             <View
@@ -59,52 +65,8 @@ export default function App() {
                 backgroundColor: 'transparent',
                 justifyContent: 'flex-end'
               }}>
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: 'flex-end'
-                }}
-                onPress={() => {
-                  setType(
-                    type === Camera.Constants.Type.back
-                      ? Camera.Constants.Type.front
-                      : Camera.Constants.Type.back
-                  );
-                }}>
-                <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}> Flip </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ alignSelf: 'center' }} onPress={async () => {
-                if (cameraRef) {
-                  const photo = await cameraRef.takePictureAsync();
-                  setCapturePhoto(photo.uri);
-                  setOpen(true)
-                  console.log('photo', photo);
-                }
-              }}>
-                <View style={{
-                  borderWidth: 2,
-
-                  borderColor: 'white',
-                  height: 50,
-                  width: 50,
-                  borderRadius: 50,
-
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                >
-                  <View style={{
-                    borderWidth: 2,
-                    borderRadius: 50,
-                    borderColor: 'white',
-                    height: 40,
-                    width: 40,
-                    backgroundColor: 'white'
-                  }} >
-                  </View>
-                </View>
-              </TouchableOpacity>
+             
+            
             </View>
 
             {capturePhoto && <Modal animated="slide"
@@ -129,9 +91,48 @@ export default function App() {
           </Camera>
 
         </View>
+        <TouchableOpacity style={{ alignSelf: 'center' }}
+         onPress={async () => {
+                if (cameraRef) {
+                  const photo = await cameraRef.takePictureAsync();
+                  setCapturePhoto(photo.uri);
+                  setOpen(true)
+                  console.log('photo', photo);
+                }
+              }}>
+                 <Text style={styles.Text}> Captura</Text>
+                <View style={{
+                  borderWidth: 2,
 
+                  borderColor: 'black',
+                  height: 50,
+                  width: 50,
+                  borderRadius: 50,
 
-        <TextInput style={styles.input}
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                >
+                  <View style={{
+                    borderWidth: 2,
+                    borderRadius: 50,
+                    borderColor: 'white',
+                    height: 40,
+                    width: 40,
+                    backgroundColor: 'white'
+                  }} >
+                  </View>
+                </View>
+              </TouchableOpacity>
+
+<View style={{    flex: 0.3,
+    backgroundColor: "#cdd8e5",
+    alignItems: 'center',
+    padding: 10,
+  }}>
+
+<TextInput style={styles.input}
           placeholder="Nome"
           autoCorrect={false}
 
@@ -151,6 +152,10 @@ export default function App() {
 
       </View>
 
+
+
+</View>
+        
     </KeyboardAvoidingView>
   );
 }
@@ -160,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: "#FFF",
+    backgroundColor: "#cdd8e5",
 
 
   },
@@ -171,9 +176,11 @@ const styles = StyleSheet.create({
 
   },
   Text: {
-
+   
     color: '#fff',
     fontSize: 20,
+    
+    
   },
   cantainer: {
     backgroundColor: 'rgba(0,0,0, 0.8)',
@@ -202,22 +209,29 @@ const styles = StyleSheet.create({
     padding: 10
   },
   btnSubmit: {
-    backgroundColor: '#080',
+    backgroundColor: '#889099',
     width: '90%',
     height: 45,
     alignItems: 'center',
     borderRadius: 7,
-    flexDirection: 'row'
+    
+    
 
   },
   submitText: {
-    color: 'black',
+    color: '#7851a9',
+    
     fontSize: 18,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: "center",
-    marginTop: 50,
-    marginLeft: 10
+    marginTop: 100,
+    marginLeft: 30,
+    fontWeight: "bold",
+    textAlign:'center',
+    textDecorationColor: '#000',
+    
+  
 
   },
   btnRegister: {
